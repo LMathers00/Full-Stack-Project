@@ -1,5 +1,4 @@
 package com.example.PP;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,17 +24,17 @@ public class PPController {
     }
 
     @GetMapping("/pps")
-    public ResponseEntity<List<PP>> getPPs() {
-        List<PP> quotes = ppRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(quotes);
+    public ResponseEntity<List<PP>> getPP() {
+        List<PP> pp = ppRepository.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(pp);
     }
 
     @GetMapping("/random-pp")
     public ResponseEntity<PP> getRandom() {
-        List<PP> pps = ppRepository.findAll();
+        List<PP> pp = ppRepository.findAll();
         Random random = new Random();
-        int randomIndex = random.nextInt(pps.size());
-        PP randomPP = pps.get(randomIndex);
+        int randomIndex = random.nextInt(pp.size());
+        PP randomPP = pp.get(randomIndex);
         return ResponseEntity.status(HttpStatus.OK).body(randomPP);
     }
 
@@ -58,4 +57,3 @@ public class PPController {
     }
 
 }
-

@@ -12,14 +12,11 @@ public class PP {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-//    private String createdBy;
+    private String createdBy;
     private String text;
-//    private String originCountry;
+    private String originCountry;
     private Timestamp dateCreated;
-
-    public PP(){
-        this.dateCreated = new Timestamp(new Date().getTime());
-    }
+    private  int match_id;
 
 
     public PP(int id, String createdBy, String text, String originCountry) {
@@ -28,14 +25,11 @@ public class PP {
         this.text = text;
 //        this.originCountry = originCountry;
         this.dateCreated = new Timestamp(new Date().getTime());
+        this.match_id = match_id;
     }
 
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
+    public PP(){
+        this.dateCreated = new Timestamp(new Date().getTime());
     }
 
     public int getId() {
@@ -46,11 +40,43 @@ public class PP {
         this.id = id;
     }
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getOriginCountry() {
+        return originCountry;
+    }
+
+    public void setOriginCountry(String originCountry) {
+        this.originCountry = originCountry;
+    }
+
     public Timestamp getDateCreated() {
         return dateCreated;
     }
 
     public void setDateCreated(Timestamp dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public int getMatch_id() {
+        return match_id;
+    }
+
+    public void setMatch_id(int match_id) {
+        this.match_id = match_id;
     }
 }

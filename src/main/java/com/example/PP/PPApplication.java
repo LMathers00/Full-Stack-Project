@@ -2,12 +2,13 @@ package com.example.PP;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 @SpringBootApplication
-public class PpApplication {
+public class PPApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PpApplication.class, args);
+		SpringApplication.run(PPApplication.class, args);
 	}
 
 }
