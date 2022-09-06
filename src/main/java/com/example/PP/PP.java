@@ -1,9 +1,6 @@
 package com.example.PP;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -12,20 +9,59 @@ public class PP {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String createdBy;
     private String text;
-    private String originCountry;
     private Timestamp dateCreated;
     private  int match_id;
+    private int homeTeamID;
+    @Column(nullable = true)
+    private Integer homeTeam_Score;
+    private int awayTeamID;
+    @Column(nullable = true)
+    private Integer awayTeam_Score;
 
 
-    public PP(int id, String createdBy, String text, String originCountry) {
+
+    public PP(int id, String text, int match_id, int homeTeamID, int homeTeam_Score, int awayTeamID, int awayTeam_Score) {
         this.id = id;
-//        this.createdBy = createdBy;
         this.text = text;
-//        this.originCountry = originCountry;
         this.dateCreated = new Timestamp(new Date().getTime());
         this.match_id = match_id;
+        this.homeTeamID = homeTeamID;
+        this.homeTeam_Score = homeTeam_Score;
+        this.awayTeamID = awayTeamID;
+        this.awayTeam_Score = awayTeam_Score;
+    }
+
+    public int getHomeTeamID() {
+        return homeTeamID;
+    }
+
+    public void setHomeTeamID(int homeTeamID) {
+        this.homeTeamID = homeTeamID;
+    }
+
+    public Integer getHomeTeam_Score() {
+        return homeTeam_Score;
+    }
+
+    public void setHomeTeam_Score(Integer homeTeam_Score) {
+        this.homeTeam_Score = homeTeam_Score;
+    }
+
+    public int getAwayTeamID() {
+        return awayTeamID;
+    }
+
+    public void setAwayTeamID(int awayTeamID) {
+        this.awayTeamID = awayTeamID;
+    }
+
+    public Integer getAwayTeam_Score() {
+        return awayTeam_Score;
+    }
+
+    public void setAwayTeam_Score(Integer awayTeam_Score) {
+        this.awayTeam_Score = awayTeam_Score;
     }
 
     public PP(){
@@ -39,15 +75,6 @@ public class PP {
     public void setId(int id) {
         this.id = id;
     }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
-
     public String getText() {
         return text;
     }
@@ -55,15 +82,6 @@ public class PP {
     public void setText(String text) {
         this.text = text;
     }
-
-    public String getOriginCountry() {
-        return originCountry;
-    }
-
-    public void setOriginCountry(String originCountry) {
-        this.originCountry = originCountry;
-    }
-
     public Timestamp getDateCreated() {
         return dateCreated;
     }
