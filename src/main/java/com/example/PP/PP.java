@@ -3,15 +3,15 @@ package com.example.PP;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.function.Function;
 
 @Entity
 public class PP {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String text;
     private Timestamp dateCreated;
-    private  int match_id;
+    private int match_id;
     private int homeTeamID;
     @Column(nullable = true)
     private Integer homeTeam_Score;
@@ -20,10 +20,8 @@ public class PP {
     private Integer awayTeam_Score;
 
 
-
-    public PP(int id, String text, int match_id, int homeTeamID, int homeTeam_Score, int awayTeamID, int awayTeam_Score) {
+    public PP(int id, int match_id, int homeTeamID, int homeTeam_Score, int awayTeamID, int awayTeam_Score) {
         this.id = id;
-        this.text = text;
         this.dateCreated = new Timestamp(new Date().getTime());
         this.match_id = match_id;
         this.homeTeamID = homeTeamID;
@@ -64,7 +62,7 @@ public class PP {
         this.awayTeam_Score = awayTeam_Score;
     }
 
-    public PP(){
+    public PP() {
         this.dateCreated = new Timestamp(new Date().getTime());
     }
 
@@ -75,13 +73,7 @@ public class PP {
     public void setId(int id) {
         this.id = id;
     }
-    public String getText() {
-        return text;
-    }
 
-    public void setText(String text) {
-        this.text = text;
-    }
     public Timestamp getDateCreated() {
         return dateCreated;
     }
@@ -97,4 +89,6 @@ public class PP {
     public void setMatch_id(int match_id) {
         this.match_id = match_id;
     }
+
+
 }

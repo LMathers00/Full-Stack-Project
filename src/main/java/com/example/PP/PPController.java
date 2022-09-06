@@ -1,4 +1,5 @@
 package com.example.PP;
+import org.hibernate.mapping.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,8 @@ public class PPController {
 
     @Autowired
     PPRepository ppRepository;
+    @Autowired
+    League_TableRepository league_tableRepository;
 
     @GetMapping("/pp/{id}")
     public ResponseEntity<PP> getPPById(@PathVariable String id) {
@@ -29,6 +32,13 @@ public class PPController {
         return ResponseEntity.status(HttpStatus.OK).body(pp);
     }
 
+    @GetMapping("/KATIE")
+    public ResponseEntity<List<League_Table>> getTable() {
+        List<League_Table> league_table =league_tableRepository.findAll();
+        return ResponseEntity.status(HttpStatus.OK).body(league_table);
+    }
+
+
     @GetMapping("/random-pp")
     public ResponseEntity<PP> getRandom() {
         List<PP> pp = ppRepository.findAll();
@@ -37,6 +47,7 @@ public class PPController {
         PP randomPP = pp.get(randomIndex);
         return ResponseEntity.status(HttpStatus.OK).body(randomPP);
     }
+
 
     @PostMapping("pp")
     public ResponseEntity createPP(@RequestBody PP pp) {
