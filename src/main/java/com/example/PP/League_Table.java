@@ -1,7 +1,5 @@
 package com.example.PP;
 
-import org.springframework.beans.factory.annotation.Value;
-
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;

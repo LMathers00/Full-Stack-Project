@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 import java.lang.reflect.Array;
 
 @Repository
-public interface League_TableRepository extends JpaRepository<League_Table, Array> {
+public interface League_TableRepository extends JpaRepository<League_Table, Integer> {
 }

@@ -1,4 +1,5 @@
 package com.example.PP;
+import org.hibernate.mapping.Array;
 import org.hibernate.mapping.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Random;
 
+import static java.lang.Integer.getInteger;
 import static java.lang.Integer.parseInt;
 
 @CrossOrigin
@@ -32,10 +34,41 @@ public class PPController {
         return ResponseEntity.status(HttpStatus.OK).body(pp);
     }
 
-    @GetMapping("/KATIE")
+    @GetMapping("/Table")
     public ResponseEntity<List<League_Table>> getTable() {
         List<League_Table> league_table =league_tableRepository.findAll();
         return ResponseEntity.status(HttpStatus.OK).body(league_table);
+    }
+
+    @PutMapping("/predictions")
+    public  ResponseEntity<PP> updatePrediction(@RequestBody PP pp , League_Table league_table ) {
+        PP prediction = ppRepository.findById(pp.getId()).orElse(null);
+        prediction.setHomeTeam_Score(pp.getHomeTeam_Score());
+        prediction.setAwayTeam_Score(pp.getAwayTeam_Score());
+        ppRepository.save(prediction);
+
+        League_Table homeTeamUpdate = league_tableRepository.findById(pp.getHomeTeamID()).orElse(null);
+        if (pp.getHomeTeam_Score() > pp.getAwayTeam_Score()){
+            homeTeamUpdate.setWon(homeTeamUpdate.getWon() +1);
+        } else if (pp.getHomeTeam_Score() == pp.getAwayTeam_Score()){
+            homeTeamUpdate.setDrawn(homeTeamUpdate.getDrawn() +1);
+        } else {
+            homeTeamUpdate.setLost(homeTeamUpdate.getLost() +1);
+        }
+        league_tableRepository.save(homeTeamUpdate);
+//
+//        League_Table awayTeamUpdate = league_tableRepository.findById(pp.getAwayTeamID());
+//        if (pp.getAwayTeam_Score() > pp.getHomeTeam_Score()){
+//            league_table.setWon(+1);
+//        } else if (pp.getHomeTeam_Score() == pp.getAwayTeam_Score()){
+//            league_table.setDrawn(+1);
+//        } else {
+//            league_table.setLost(+1);
+//        }
+//        league_tableRepository.save(awayTeamUpdate);
+
+
+    return new ResponseEntity<>(prediction,HttpStatus.OK);
     }
 
 

@@ -3,7 +3,6 @@ package com.example.PP;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
-import java.util.function.Function;
 
 @Entity
 public class PP {
@@ -19,8 +18,7 @@ public class PP {
     @Column(nullable = true)
     private Integer awayTeam_Score;
 
-
-    public PP(int id, int match_id, int homeTeamID, int homeTeam_Score, int awayTeamID, int awayTeam_Score) {
+    public PP(int id, int match_id, int homeTeamID, Integer homeTeam_Score, int awayTeamID, Integer awayTeam_Score) {
         this.id = id;
         this.dateCreated = new Timestamp(new Date().getTime());
         this.match_id = match_id;
@@ -29,6 +27,7 @@ public class PP {
         this.awayTeamID = awayTeamID;
         this.awayTeam_Score = awayTeam_Score;
     }
+
 
     public int getHomeTeamID() {
         return homeTeamID;
@@ -89,6 +88,7 @@ public class PP {
     public void setMatch_id(int match_id) {
         this.match_id = match_id;
     }
+
 
 
 }
