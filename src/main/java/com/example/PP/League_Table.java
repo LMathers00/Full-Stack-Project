@@ -27,7 +27,7 @@ public class League_Table {
         this.Won = Won;
         this.Drawn = Drawn;
         this.Lost = Lost;
-        this.Points = (3 * Won) + Drawn ;
+        this.Points = (3 * this.Won) + this.Drawn ;
     }
 
     public int getTeamID() {
