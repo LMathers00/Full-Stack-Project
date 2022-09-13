@@ -51,8 +51,10 @@ public class PPController {
         League_Table homeTeamUpdate = league_tableRepository.findById(prediction.getHomeTeamID()).orElse(null);
         if (pp.getHomeTeam_Score() > pp.getAwayTeam_Score()){
             homeTeamUpdate.setWon(homeTeamUpdate.getWon() +1);
+            homeTeamUpdate.setPoints(homeTeamUpdate.getPoints() + 3);
         } else if (pp.getHomeTeam_Score() == pp.getAwayTeam_Score()){
             homeTeamUpdate.setDrawn(homeTeamUpdate.getDrawn() +1);
+            homeTeamUpdate.setPoints(homeTeamUpdate.getPoints() + 1);
         } else if (pp.getHomeTeam_Score() < pp.getAwayTeam_Score()){
             homeTeamUpdate.setLost(homeTeamUpdate.getLost() +1);
         }
@@ -61,8 +63,10 @@ public class PPController {
         League_Table awayTeamUpdate = league_tableRepository.findById(prediction.getAwayTeamID()).orElse(null);
         if (pp.getHomeTeam_Score() < pp.getAwayTeam_Score()){
             awayTeamUpdate.setWon(awayTeamUpdate.getWon() +1);
+            awayTeamUpdate.setPoints(awayTeamUpdate.getPoints() + 3);
         } else if (pp.getHomeTeam_Score() == pp.getAwayTeam_Score()){
             awayTeamUpdate.setDrawn(awayTeamUpdate.getDrawn() +1);
+            awayTeamUpdate.setPoints(awayTeamUpdate.getPoints() + 1);
         } else if (pp.getHomeTeam_Score() > pp.getAwayTeam_Score()){
             awayTeamUpdate.setLost(awayTeamUpdate.getLost() +1);
         }

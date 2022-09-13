@@ -20,14 +20,14 @@ public class League_Table {
     @Column(columnDefinition = "int default 0")
     private int Points;
 
-    public League_Table(int TeamID, String TeamName, int Won, int Drawn, int Lost, int Points) {
+    public League_Table(int TeamID, String TeamName, int Won, int Drawn, int Lost) {
         this.TeamID = TeamID;
         this.dateCreated = new Timestamp(new Date().getTime());
         this.TeamName = TeamName;
         this.Won = Won;
         this.Drawn = Drawn;
         this.Lost = Lost;
-        this.Points = (3 * this.Won) + this.Drawn ;
+        this.Points = getWon()  ;
     }
 
     public int getTeamID() {
